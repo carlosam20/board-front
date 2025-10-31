@@ -1,11 +1,15 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
+// import HelloWorld from './components/HelloWorld.vue'
+import Editor from './components/Editor.vue'
+import HelloWorld from './components/HelloWorld.vue';
 </script>
 
 <template>
   <div>
+    <Editor></Editor>
+    <HelloWorld></HelloWorld>
   </div>
-  <HelloWorld />
+  
 </template>
 
 <style scoped>
