@@ -14,10 +14,15 @@
     "@tailwindcss/vite": "^4.1.16",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "fabric": "^6.7.1",
+    "flowbite": "^3.1.2",
+    "flowbite-vue": "^0.2.2",
     "lucide-react": "^0.552.0",
     "tailwind-merge": "^3.3.1",
     "tailwindcss": "^4.1.16",
-    "vue": "^3.5.22"
+    "vue": "^3.5.22",
+    "y-websocket": "^3.0.0",
+    "yjs": "^13.6.27"
   },
   "devDependencies": {
     "@types/node": "^24.9.2",
