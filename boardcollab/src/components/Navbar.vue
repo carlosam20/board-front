@@ -10,7 +10,7 @@
         BoardCollab
       </fwb-navbar-logo>
     </template>
-    <template #default="{isShowMenu}">
+    <template #default="{ isShowMenu }">
       <fwb-navbar-collapse :is-show-menu="isShowMenu">
         <fwb-navbar-link is-active link="#">
           Home
@@ -34,11 +34,8 @@
   </fwb-navbar>
 
   <div class="flex justify-end">
-    <fwb-toast 
-    v-if="showToast" 
-    :type="toastType" ç
-    closable @close="showToast = false" >
-    <p class="text-white text-center">{{ toastMessage }}</p>
+    <fwb-toast v-if="showToast" :type="toastType" ç closable @close="showToast = false">
+      <p class="text-white text-center">{{ toastMessage }}</p>
     </fwb-toast>
   </div>
 </template>
@@ -64,10 +61,10 @@ function createRoom() {
   try {
     createAndNavigateToRoom();
     toastMessage.value = "Room created";
-    toastType.value = "success"; 
+    toastType.value = "success";
   } catch (error) {
     toastMessage.value = "Failed to create room:";
-    toastType.value = "danger"; 
+    toastType.value = "danger";
   }
 
   showToast.value = true;
@@ -77,19 +74,21 @@ function createRoom() {
 </script>
 
 <style lang="css">
-.success{
+.success {
   background-color: #5aa80b;
 }
 
-.error{
+.error {
   background-color: #a80b0b;
 }
 
-.fade-enter-active, .fade-leave-active {
+.fade-enter-active,
+.fade-leave-active {
   transition: opacity 0.3s ease;
 }
-.fade-enter-from, .fade-leave-to {
+
+.fade-enter-from,
+.fade-leave-to {
   opacity: 0;
 }
-
 </style>
