@@ -4,9 +4,9 @@
 </script>
 
 <template>
-  <fwb-navbar>
+  <fwb-navbar class="justify-center">
     <template #logo>
-      <fwb-navbar-logo alt="Flowbite logo" image-url="/images/logo.svg" link="#">
+      <fwb-navbar-logo alt="Flowbite logo" image-url="/assets/logo.svg" link="#">
         BoardCollab
       </fwb-navbar-logo>
     </template>
@@ -27,11 +27,23 @@
       <fwb-button>
         Sign up
       </fwb-button>
+      <fwb-button @click="createRoom">
+        Create Room
+      </fwb-button>
     </template>
   </fwb-navbar>
+
+  <div class="flex justify-end">
+    <fwb-toast 
+    v-if="showToast" 
+    :type="toastType" ç
+    closable @close="showToast = false" >
+    <p class="text-white text-center">{{ toastMessage }}</p>
+    </fwb-toast>
+  </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import {
   FwbButton,
   FwbNavbar,
@@ -39,4 +51,45 @@ import {
   FwbNavbarLink,
   FwbNavbarLogo,
 } from 'flowbite-vue'
+import { useRoomNavigator } from '../services/roomNavigator';
+import { ref } from 'vue';
+import { FwbToast } from 'flowbite-vue'
+
+const showToast = ref(false);
+const toastType = ref('success'); // or 'danger', 'warning', etc.
+const toastMessage = ref('');
+const { createAndNavigateToRoom } = useRoomNavigator();
+
+function createRoom() {
+  try {
+    createAndNavigateToRoom();
+    toastMessage.value = "Room created";
+    toastType.value = "success"; 
+  } catch (error) {
+    toastMessage.value = "Failed to create room:";
+    toastType.value = "danger"; 
+  }
+
+  showToast.value = true;
+}
+
+
 </script>
+
+<style lang="css">
+.success{
+  background-color: #5aa80b;
+}
+
+.error{
+  background-color: #a80b0b;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
+}
+
+</style>
