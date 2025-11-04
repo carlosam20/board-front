@@ -2,6 +2,9 @@
 /* @import "tw-animate-css"; */
 /* import Flowbite Vue styles */
 @import "flowbite-vue/index.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 /* import Flowbite plugin */
 @plugin "flowbite/plugin";
@@ -24,4 +27,15 @@ html{
 button {
   background-color: var(--primary-bg-color);
   color:var(--color-primary);
+}
+
+
+@layer base {
+  @font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(/fonts/Roboto.woff2) format('woff2');
+  }
 }

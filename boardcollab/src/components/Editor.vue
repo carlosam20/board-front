@@ -1,6 +1,7 @@
 
 
 <template>
+
     <div class="flex justify-left m-auto">
         <fwb-button @click = "copyClipboard"  gradient="purple-blue" outline>
         Copy code
@@ -15,11 +16,11 @@
     <p class="text-white text-center">{{ toastMessage }}</p>
     </fwb-toast>
   </div>
-  <div class=" flex justify-evenly drawing-board m-auto">
-    <div class="toolbar">
-      <input type="color" v-model="color" />
-      <fwb-range gradient ="purple" type="range" :min="1" :max="20" v-model="lineWidth" />
-      <fwb-button gradient="red" shadow @click="clearCanvas">Clear</fwb-button>
+  <div class="flex justify-evenly drawing-board m-auto">
+    <div class="grid grid-cols-3 gap-3 toolbar">
+      <input type="color" v-model="color" class="ml-3 mr-3"/>
+      <fwb-range class="accent-purple-700 ml-3 mr-3" type="range" :min="1" :max="20" v-model="lineWidth" label="width" />
+      <fwb-button gradient="red" size="xl" shadow @click="clearCanvas" class="mr-3 ml-3">Clear</fwb-button>
     </div>
     <canvas
       ref="canvas"
@@ -155,6 +156,16 @@ function copyClipboard() {
 
 <style scoped>
 
+input[type="color"] {
+	border: none;
+	width: 6em;
+	height: 6em;
+  background-color: #ccc;
+
+}
+
+
+
 .drawing-board {
   display: flex;
   flex-direction: column;
@@ -163,6 +174,11 @@ function copyClipboard() {
 }
 
 canvas {
+background-color: #1f1f22;
+opacity: 0.8;
+background-image:  linear-gradient(#444450 1px, transparent 1px), linear-gradient(to right, #4b4c57 1px, #3a3441 1px);
+background-size: 20px 20px;
+
   border: 1px solid #ccc;
   cursor: crosshair;
   border-radius: 1%;
@@ -176,9 +192,20 @@ canvas {
     opacity: 0;
   }
   
-  /* background: #333; */
-  background-image: linear-gradient(#FFF .1em, transparent .1em), linear-gradient(90deg, #FFF .1em, transparent .1em);
+  
 
+}
+
+
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 
 
